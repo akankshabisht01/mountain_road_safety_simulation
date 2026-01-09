@@ -91,7 +91,6 @@ Retrieved from https://morth.nic.in/
 **Citation**:
 ```
 India Meteorological Department (IMD). (2022-2026). 
-Weather Data for Shimla Airport (VISM), Himachal Pradesh/Uttarakhand Region.
 Retrieved from https://www.imd.gov.in/
 ```
 
@@ -220,7 +219,7 @@ The simulator code is released under MIT License. However, the data sources reta
 ---
 
 **For questions about data sources, please contact:**
-- Email: [your-email]
+- Email: [akankshabisht145@gmail.com]
 - GitHub: https://github.com/akankshabisht01
 - Project: Mountain Road Safety Simulator
 

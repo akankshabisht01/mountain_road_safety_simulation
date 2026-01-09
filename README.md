@@ -317,63 +317,6 @@ overall_risk = (
 
 ---
 
-## 🏆 Hackathon Highlights
-
-### Why This Project Wins
-
-1. **Real Social Impact** 🌍
-   - Addresses 1,747 accidents in 2024 alone (Uttarakhand)
-   - 1,090 deaths prevented with predictive modeling
-   - Applicable to all mountain states (HP, J&K, Sikkim, NE)
-   - Government bodies can use for planning
-
-2. **India-Specific Solution** 🇮🇳
-   - Uses actual Indian road data
-   - Cost estimates in INR
-   - Designed for Indian vehicles and conditions
-
-3. **No Hardware Required** 💻
-   - Pure software solution
-   - Runs on any laptop
-   - Easy to scale and deploy
-
-4. **Immediate Usability** ⚡
-   - Works out of the box
-   - Clear visualizations
-   - Actionable recommendations
-
-5. **Scientifically Sound** 🔬
-   - Physics-based models
-   - Real data validation
-   - Transparent algorithms
-
-### Demo Flow (5 minutes)
-
-1. **Introduction** (30s)
-   - Show problem statistics
-   - Display road overview
-
-2. **Normal Scenario** (1 min)
-   - Run bus simulation
-   - Show moderate risks
-   - Highlight 2-3 dangerous segments
-
-3. **Heavy Rain Scenario** (1.5 min)
-   - Re-run with Heavy_Rain
-   - Show risk increase (40-60%)
-   - Display landslide warnings
-   - Point out brake temperature spike
-
-4. **Comparison View** (1 min)
-   - Show all scenarios side-by-side
-   - Emphasize risk variations
-
-5. **Recommendations** (1 min)
-   - Show top 5 critical recommendations
-   - Explain cost and timeline
-   - Highlight infrastructure priorities
-
----
 
 ## 💰 Cost-Benefit Analysis
 
@@ -456,24 +399,13 @@ MIT License - Feel free to use for educational and non-commercial purposes.
 ## 📞 Support & Contact
 
 For questions, issues, or collaboration:
-- 📧 Email: [Your Email]
-- 💼 LinkedIn: [Your LinkedIn]
-- 🐙 GitHub: [Your GitHub]
+- 📧 Email: [akankshabisht145@gmail.com]
+- 💼 LinkedIn: [www.linkedin.com/in/akanksha-bisht-00a1951b7]
+- 🐙 GitHub: [https://github.com/akankshabisht01]
 
 ---
 
-## 🎯 Judging Criteria Alignment
 
-| Criteria | How We Excel |
-|----------|-------------|
-| **Innovation** | First mountain-specific risk simulator in India |
-| **Impact** | Directly saves lives (100+ potential annually) |
-| **Feasibility** | Working prototype, no hardware, deployable now |
-| **Scalability** | Can expand to all hill states |
-| **Technical Quality** | Physics-based models, clean code, good UX |
-| **Presentation** | Interactive demo, clear visualizations |
-
----
 
 ## 📚 References
 
@@ -485,25 +417,8 @@ For questions, issues, or collaboration:
 
 ---
 
-## ⚠️ Disclaimer
-
-This simulator is a **decision-support tool** for planning and awareness. It does NOT replace:
-- Professional engineering assessments
-- Real-world testing and validation
-- Expert judgment
-- Standard safety procedures
-
-Always consult qualified engineers and authorities for actual infrastructure projects.
-
----
-
 **"An ounce of prevention is worth a pound of cure."**  
 *- Benjamin Franklin*
 
 Let's make mountain roads safer, one simulation at a time. 🏔️🚗✨
 
----
-
-**Last Updated**: January 8, 2026  
-**Version**: 1.0.0  
-**Status**: Hackathon Ready ✅
