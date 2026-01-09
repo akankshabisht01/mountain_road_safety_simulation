@@ -1,0 +1,6 @@
+Condition,Rainfall_mm,Soil_Type,Season,Temperature_C,Landslide_Risk_Base,Road_Friction,Visibility_Factor,Description
+Normal,0,Rocky,Summer,25,0.1,0.85,1.0,Clear dry weather with good road conditions
+Light_Rain,25,Rocky,Monsoon,22,0.3,0.70,0.8,Light rainfall with some slippery conditions
+Heavy_Rain,100,Loose,Monsoon,20,0.7,0.50,0.5,Heavy monsoon rain with high landslide risk
+Winter,10,Rocky,Winter,8,0.2,0.75,0.7,Cold winter with occasional ice patches
+Foggy,5,Rocky,Winter,12,0.15,0.80,0.3,Dense fog reducing visibility significantly

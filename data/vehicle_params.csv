@@ -1,0 +1,4 @@
+Vehicle_Type,Weight_kg,Length_m,Width_m,Brake_Type,Brake_Capacity,Max_Safe_Speed_Normal_kmh,Max_Safe_Speed_Hills_kmh,Brake_Heat_Factor,Center_Of_Gravity_m
+Bus,12000,10.5,2.5,Hydraulic,8500,80,40,1.8,2.2
+Car,1200,4.0,1.8,Disc,3500,100,60,1.0,0.8
+Truck,16000,8.5,2.3,Air,10000,70,30,2.0,2.5

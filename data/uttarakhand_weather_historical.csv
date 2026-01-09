@@ -1,0 +1,13 @@
+Month,Max_Temp_Avg_C,Min_Temp_Avg_C,Humidity_Avg_Percent,Wind_Speed_Avg_kmh,Days_Above_30C,Days_Above_25C,Days_Above_20C,Season,Rainfall_Pattern,Visibility_Rating
+January,14.5,7.6,53.5,2.8,0,0,0,Winter,Low,Good
+February,15.7,9.0,48.7,3.6,0,0,9,Winter,Low,Good
+March,19.5,12.6,51.2,3.7,0,0,65,Spring,Low,Good
+April,22.7,16.4,47.6,3.4,0,2,81,Spring,Moderate,Good
+May,26.1,19.4,51.9,3.6,0,10,107,Pre-Monsoon,Moderate,Moderate
+June,27.1,22.6,56.6,3.3,0,25,215,Monsoon,High,Moderate
+July,24.1,21.3,86.8,1.9,0,81,219,Monsoon,Very_High,Poor
+August,24.2,21.0,87.6,2.3,0,81,215,Monsoon,Very_High,Poor
+September,24.2,20.1,79.7,2.2,0,65,200,Post-Monsoon,High,Moderate
+October,22.8,16.3,58.5,1.8,0,25,150,Autumn,Moderate,Good
+November,18.7,11.7,54.7,1.4,0,0,50,Autumn,Low,Good
+December,16.0,8.5,46.3,1.7,0,0,10,Winter,Low,Good
