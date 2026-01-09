@@ -265,11 +265,20 @@ class RoadVisualizer:
             mode="gauge+number+delta",
             value=risk_score * 100,
             domain={'x': [0, 1], 'y': [0, 1]},
-            title={'text': title, 'font': {'size': 24}},
+            title={'text': title, 'font': {'size': 24, 'color': 'darkblue'}},
             delta={'reference': 50, 'increasing': {'color': "red"}},
+            number={'font': {'size': 40, 'color': 'darkblue'}, 'suffix': '%'},
             gauge={
-                'axis': {'range': [None, 100], 'tickwidth': 1, 'tickcolor': "darkblue"},
-                'bar': {'color': "darkblue"},
+                'axis': {
+                    'range': [0, 100], 
+                    'tickwidth': 2, 
+                    'tickcolor': "darkblue",
+                    'tickmode': 'linear',
+                    'tick0': 0,
+                    'dtick': 10,
+                    'tickfont': {'size': 14, 'color': 'darkblue'}
+                },
+                'bar': {'color': "darkblue", 'thickness': 0.75},
                 'bgcolor': "white",
                 'borderwidth': 2,
                 'bordercolor': "gray",
@@ -290,7 +299,9 @@ class RoadVisualizer:
         
         fig.update_layout(
             height=350,
-            font={'color': "darkblue", 'family': "Arial"}
+            font={'color': "darkblue", 'family': "Arial", 'size': 14},
+            paper_bgcolor='white',
+            plot_bgcolor='white'
         )
         
         return fig
@@ -437,14 +448,21 @@ class RoadVisualizer:
             ]
         )
         
-        # Average Risk Indicator
+        # Current Risk Indicator
         fig.add_trace(go.Indicator(
             mode="gauge+number",
             value=risk_stats['average_risk'] * 100,
-            title={'text': "Avg Risk %"},
+            title={'text': "Current Risk %", 'font': {'size': 16}},
+            number={'font': {'size': 32}, 'suffix': '%'},
             gauge={
-                'axis': {'range': [0, 100]},
-                'bar': {'color': "darkblue"},
+                'axis': {
+                    'range': [0, 100],
+                    'tickmode': 'linear',
+                    'tick0': 0,
+                    'dtick': 20,
+                    'tickfont': {'size': 12}
+                },
+                'bar': {'color': "darkblue", 'thickness': 0.7},
                 'steps': [
                     {'range': [0, 40], 'color': "lightgreen"},
                     {'range': [40, 60], 'color': "yellow"},
@@ -459,10 +477,20 @@ class RoadVisualizer:
             'Cliff Zones': risk_stats['cliff_zones'],
             'Landslide Zones': risk_stats['landslide_zones']
         }
+        # Filter out zero values for better visualization
+        hazards_filtered = {k: v for k, v in hazards.items() if v > 0}
+        
+        if len(hazards_filtered) == 0:
+            # If all values are zero, show a message
+            hazards_filtered = {'No Hazards': 1}
+        
         fig.add_trace(go.Pie(
-            labels=list(hazards.keys()),
-            values=list(hazards.values()),
-            marker=dict(colors=['#FF4500', '#8B0000', '#DAA520'])
+            labels=list(hazards_filtered.keys()),
+            values=list(hazards_filtered.values()),
+            marker=dict(colors=['#FF4500', '#8B0000', '#DAA520']),
+            textinfo='label+value+percent',
+            textfont=dict(size=12),
+            hovertemplate='<b>%{label}</b><br>Count: %{value}<br>Percentage: %{percent}<extra></extra>'
         ), row=1, col=2)
         
         # Critical Segments Bar
@@ -476,7 +504,10 @@ class RoadVisualizer:
             y=list(segments_data.values()),
             marker_color=['#8B0000', '#FF0000', '#FF8C00'],
             text=list(segments_data.values()),
-            textposition='auto'
+            textposition='auto',
+            textfont={'size': 14, 'color': 'white'},
+            hovertemplate='<b>%{x}</b><br>Count: %{y}<extra></extra>',
+            showlegend=False
         ), row=1, col=3)
         
         # Segment Classification Bar (row 2, col 1)
@@ -491,31 +522,40 @@ class RoadVisualizer:
             y=list(classification_data.values()),
             marker_color=['#32CD32', '#FFD700', '#FF8C00', '#8B0000'],
             text=list(classification_data.values()),
-            textposition='auto'
+            textposition='auto',
+            textfont={'size': 14, 'color': 'white'}
         ), row=2, col=1)
         
         # Max Brake Temp Indicator
         fig.add_trace(go.Indicator(
             mode="number+delta",
             value=risk_stats['max_brake_temp'],
-            title={'text': "Max Brake Temp (°C)"},
+            title={'text': "Max Brake Temp (°C)", 'font': {'size': 14}},
             delta={'reference': 250, 'increasing': {'color': "red"}},
-            number={'font': {'size': 40}}
+            number={'font': {'size': 36, 'color': 'darkblue'}}
         ), row=2, col=2)
         
         # Most Dangerous Segment
         fig.add_trace(go.Indicator(
             mode="number",
             value=risk_stats['max_risk_segment'],
-            title={'text': "Most Dangerous Segment"},
-            number={'font': {'size': 50, 'color': 'red'}}
+            title={'text': "Most Dangerous Segment", 'font': {'size': 14}},
+            number={'font': {'size': 42, 'color': 'red'}}
         ), row=2, col=3)
+        
+        # Update axes for better visibility
+        fig.update_xaxes(title_text="Risk Category", row=1, col=3, tickfont=dict(size=12))
+        fig.update_yaxes(title_text="Count", row=1, col=3, tickfont=dict(size=12))
+        
+        fig.update_xaxes(title_text="Risk Level", row=2, col=1, tickfont=dict(size=12))
+        fig.update_yaxes(title_text="Count", row=2, col=1, tickfont=dict(size=12))
         
         fig.update_layout(
             height=700,
             showlegend=False,
             title_text="<b>Road Safety Statistics Dashboard</b>",
-            title_font_size=20
+            title_font_size=20,
+            font=dict(size=12)
         )
         
         return fig

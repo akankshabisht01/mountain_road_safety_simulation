@@ -425,8 +425,8 @@ def simulate_vehicle_journey(road_data: pd.DataFrame,
                                road_characteristics: pd.DataFrame,
                                vehicle_params: pd.Series,
                                environment: pd.Series,
-                               speed: float = None,
-                               driver_behavior: Dict = None) -> pd.DataFrame:
+                               speed: float | None = None,
+                               driver_behavior: Dict | None = None) -> pd.DataFrame:
     """
     Simulate complete vehicle journey through all road segments
     
@@ -459,7 +459,11 @@ def simulate_vehicle_journey(road_data: pd.DataFrame,
     # Merge road data with characteristics
     combined = road_data.merge(road_characteristics, on='Segment', how='left')
     
-    for idx, segment in combined.iterrows():
+    # Ensure speed is float (after None check above)
+    assert speed is not None, "Speed must be set"
+    current_speed: float = speed
+    
+    for row_idx, (idx, segment) in enumerate(combined.iterrows()):
         segment_id = segment['Segment']
         slope_pct = segment['Slope_Magnitude(%)']
         slope_direction = segment['Slop(%)']
@@ -475,9 +479,9 @@ def simulate_vehicle_journey(road_data: pd.DataFrame,
         visibility = float(segment.get('Visibility_m', 80))
         
         # Calculate segment distance (difference from previous segment)
-        current_distance = float(segment.get('Distance(KM)', 0.11 * (idx + 1)))
-        if idx > 0:
-            prev_distance = float(combined.loc[idx-1, 'Distance(KM)'])
+        current_distance = float(segment.get('Distance(KM)', 0.11 * (row_idx + 1)))
+        if row_idx > 0:
+            prev_distance = float(combined.iloc[row_idx-1]['Distance(KM)'])
             segment_distance = current_distance - prev_distance
         else:
             segment_distance = 0.11  # Default first segment length
@@ -488,20 +492,20 @@ def simulate_vehicle_journey(road_data: pd.DataFrame,
         
         # Calculate stability risk
         stability = vehicle.calculate_stability_risk(
-            slope_pct, road_width, curve_sharpness, speed, environment['Road_Friction']
+            slope_pct, road_width, curve_sharpness, current_speed, environment['Road_Friction']
         )
         
         # Calculate brake failure risk
         brake = vehicle.calculate_brake_failure_risk(
             slope_pct if is_downhill else -slope_pct,
             segment_distance,
-            speed,
+            current_speed,
             is_downhill
         )
         
         # Calculate cliff fall risk
         cliff = vehicle.calculate_cliff_fall_risk(
-            cliff_present, guardrail, road_width, visibility, speed, stability['stability_risk']
+            cliff_present, guardrail, road_width, visibility, current_speed, stability['stability_risk']
         )
         
         # Calculate landslide risk

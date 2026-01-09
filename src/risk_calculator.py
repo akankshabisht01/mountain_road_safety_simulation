@@ -63,7 +63,7 @@ class RiskFusionEngine:
             'risk_classification': classification,
             'color_code': color,
             'action_priority': action,
-            'primary_risk_factor': max(risk_scores, key=risk_scores.get)
+            'primary_risk_factor': max(risk_scores.items(), key=lambda x: x[1])[0]
         }
     
     def identify_dangerous_zones(self, simulation_results: pd.DataFrame, top_n: int = 10) -> pd.DataFrame:
@@ -335,7 +335,7 @@ class SafetyRecommendationEngine:
         return recommendations
     
     @staticmethod
-    def prioritize_interventions(all_recommendations: List[Dict], budget_limit: float = None) -> pd.DataFrame:
+    def prioritize_interventions(all_recommendations: List[Dict], budget_limit: float | None = None) -> pd.DataFrame:
         """
         Prioritize recommendations based on priority and budget
         
